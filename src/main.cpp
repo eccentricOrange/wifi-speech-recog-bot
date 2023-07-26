@@ -5,16 +5,15 @@
 
 const int PORT = 80;
 
-uint8_t DIRECTION_PINS[DDBot::NUMBER_OF_DIRECTION_PINS] = {
-    2,  // Left forward
-    3,  // Left backward
-    4,  // Right forward
-    5   // Right backward
-};
-
 WiFiServer server(PORT);
 WiFiClient client;
-DDBot bot(DIRECTION_PINS);
+DDBot bot(
+    2,  // left forward
+    3,  // left backward
+    4,  // right forward
+    5   // right backward
+);
+
 
 char command;
 String response, receivedData;
