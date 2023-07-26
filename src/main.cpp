@@ -1,3 +1,19 @@
+/**
+ * @brief This script sets up a WiFi server and a DDBot object, which controls a two-wheeled robot with four motors.
+ * It listens for incoming commands from a client, executes them on the DDBot object, and sends a response back to the client.
+ *
+ * The script first sets up the WiFi connection and waits for a client to connect to the server.
+ * Once a client is connected, the script listens for incoming data from the client.
+ * When data is received, it is parsed and executed on the DDBot object.
+ * A response is then generated and sent back to the client.
+ * This process continues until the client disconnects from the server.
+ *
+ * To use this script, upload it to an appropriate board (such as an ESP32 or ESP8266) and connect the four motor pins to the appropriate pins on the board.
+ * Then, connect to the WiFi network created by the board and send commands to the server using a client such as a web browser or a custom application.
+ * The server will execute the commands on the DDBot object and send a response back to the client.
+ * The IP address of the board can be found in the Serial Monitor after connecting to the WiFi network.
+ */
+
 #include <Arduino.h>
 #include <DDBot.h>
 #include <WiFi.h>
