@@ -17,7 +17,7 @@ WiFiClient client;
 DDBot bot(DIRECTION_PINS);
 
 char command;
-String response;
+String response, receivedData;
 
 void setupWiFi() {
     WiFi.mode(WIFI_STA);
@@ -89,9 +89,10 @@ void loop() {
         while (client.connected()) {
 
             if (client.available()) {
-                client.readStringUntil('\r');
-                command = client.readString()[0];
+                receivedData = client.readString();
+                command = receivedData[receivedData.length() - 1];
                 
+                Serial.printf("Received command: %c\n", command);
                 response = writeToBot(command);
 
                 sendHTTPResponse(client, 200, "text/plain", response);

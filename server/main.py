@@ -9,7 +9,7 @@ COMMANDS = {
     "stop": "S",
 }
 
-ESP_IP = "192.168.137.249"
+ESP_IP = "192.168.137.5"
 ESP_PORT = 80
 
 
@@ -78,8 +78,9 @@ def main(main_source: speech_recognition.AudioSource, main_recognizer: speech_re
 
 
 if __name__ == "__main__":
-    with speech_recognition.Microphone() as source, speech_recognition.Recognizer() as recognizer:
+    recognizer = speech_recognition.Recognizer()
+    with speech_recognition.Microphone() as source:
+        print("Press ENTER when ready to start recording, or q to quit.")
 
         while input() != 'q':
-            print("Press ENTER when ready to start recording, or q to quit.")
             main(source, recognizer)
