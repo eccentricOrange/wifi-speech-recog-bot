@@ -79,6 +79,7 @@ def main(main_source: speech_recognition.AudioSource, main_recognizer: speech_re
 
 if __name__ == "__main__":
     recognizer = speech_recognition.Recognizer()
+    
     with speech_recognition.Microphone() as source:
         print("Press ENTER when ready to start recording, or q to quit.")
 

@@ -69,6 +69,7 @@ String writeToBot(const char command) {
             break;
 
         default:
+            bot.stop();
             return "ERROR";
     }
 
