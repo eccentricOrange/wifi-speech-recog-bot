@@ -34,7 +34,25 @@ The Python script listens for incoming requests from the robot and uses the [Goo
 
 4.  Upload the code to the ESP32 board.
 
-5.  Run the Python script.
+5.  Set the IP address and run the Python script.
+
+    You need to set the IP address of the ESP32 board as an environment variable named `ESP_IP`.
+    
+    To do so in Windows (no PowerShell), run the following command:
+
+    ```pwsh
+    $env:ESP_IP = "your_esp_ip_address"
+    ```
+
+    To do so in Linux, run the following command:
+
+    ```sh
+    export ESP_IP="your_esp_ip_address"
+    ```
+
+    Ensure to replace `your_esp_ip_address` with the IP address of the ESP32 board.
+
+    Then, run the Python script.
 
     ```sh
     python main.py

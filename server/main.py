@@ -1,5 +1,6 @@
 import speech_recognition
 import requests
+from os import environ
 
 COMMANDS = {
     "forward": "F",
@@ -9,7 +10,7 @@ COMMANDS = {
     "stop": "S",
 }
 
-ESP_IP = "192.168.137.5"
+ESP_IP = environ.get("ESP_IP", "")
 ESP_PORT = 80
 
 
