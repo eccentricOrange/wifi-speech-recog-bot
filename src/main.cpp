@@ -24,12 +24,13 @@ const int PORT = 80;
 WiFiServer server(PORT);
 WiFiClient client;
 DDBot bot(
-    2,  // left forward
-    3,  // left backward
-    4,  // right forward
-    5   // right backward
+    13,  // left forward
+    12,  // left backward
+    14,  // right forward
+    27  // right backward
 );
 
+const uint8_t LED_PIN = 2;
 
 char command;
 String response, receivedData;
@@ -42,7 +43,11 @@ void setupWiFi() {
     Serial.print("Connecting to WiFi ");
     while (WiFi.status() != WL_CONNECTED) {
         Serial.print('.');
-        delay(500);
+        
+        digitalWrite(LED_PIN, HIGH);
+        delay(100);
+        digitalWrite(LED_PIN, LOW);
+        delay(100);
     }
 
     Serial.println();
@@ -62,6 +67,8 @@ void sendHTTPResponse(WiFiClient client, int statusCode, const String& contentTy
 }
 
 String writeToBot(const char command) {
+    digitalWrite(LED_PIN, HIGH);
+
     switch (command) {
         case 'F':
             bot.forward();
@@ -81,10 +88,14 @@ String writeToBot(const char command) {
 
         case 'S':
             bot.stop();
+            digitalWrite(LED_PIN, LOW);
+            
             break;
 
         default:
             bot.stop();
+            digitalWrite(LED_PIN, LOW);
+
             return "ERROR";
     }
 
@@ -92,6 +103,8 @@ String writeToBot(const char command) {
 }
 
 void setup() {
+    pinMode(LED_PIN, OUTPUT);
+    
     Serial.begin(115200);
     setupWiFi();
     bot.setPinModes();
