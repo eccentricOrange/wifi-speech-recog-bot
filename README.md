@@ -32,7 +32,7 @@ The Python script listens for incoming requests from the robot and uses the [Goo
 
     Ensure to replace `your_wifi_ssid` and `your_wifi_password` with your Wi-Fi credentials.
 
-4.  Upload the code to the ESP32 board.
+4.  Upload the code to the ESP32 board. It should print the IP address of the board in the serial monitor, but you obviously can't see it once you're running wirelessly. In this case, you can use your router's admin page to find the IP address of the board.
 
 5.  Set the IP address and run the Python script.
 
