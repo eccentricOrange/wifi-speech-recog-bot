@@ -48,3 +48,12 @@ The script will listen for speech commands once you press the Enter key. You can
 * "Left"
 * "Right"
 * "Stop"
+
+## Using with Arduino IDE
+This project is meant to be used with the [PlatformIO](https://platformio.org/) IDE. However, you can also use the Arduino IDE to upload the code to the ESP32 board. To do this, follow the steps below:
+
+1.  Install the [ESP32 Arduino Core](https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/installing.html) from the board manager, and DDBot from the library manager.
+2.  Create a new project in the Arduino IDE.
+3.  Copy the contents of the `src/main.cpp` file to the new project. This is the main sketch file.
+4.  Create a new file named `secrets.h` in the root folder of the project (instead of creating in the `include` folder), as described in step 3 of the [Usage](#usage) section.
+5.  Upload the code to the ESP32 board.
