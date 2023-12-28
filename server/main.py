@@ -1,6 +1,8 @@
-import speech_recognition
-import requests
+from ipaddress import IPv4Address, IPv6Address, ip_address
 from os import environ
+
+import requests
+import speech_recognition
 
 COMMANDS = {
     "forward": "F",
@@ -14,8 +16,19 @@ ESP_IP = environ.get("ESP_IP", "")
 ESP_PORT = 80
 
 
+def extract_ip_address(ip_input: str) -> IPv4Address | IPv6Address:
+    if not ip_input:
+        raise ValueError("IP address environment variable ESP_IP not set.")
+
+    try:
+        return ip_address(ip_input)
+
+    except ValueError as e:
+        raise ValueError(f"Invalid IP address: {ip_input}") from e
+
+
 def send_string_to_esp32(data: str) -> bool:
-    url = f"http://{ESP_IP}:{ESP_PORT}/"
+    url = f"http://{extract_ip_address(ESP_IP).exploded}:{ESP_PORT}/"
 
     try:
         response = requests.post(url, data=data)
@@ -80,7 +93,7 @@ def main(main_source: speech_recognition.AudioSource, main_recognizer: speech_re
 
 if __name__ == "__main__":
     recognizer = speech_recognition.Recognizer()
-    
+
     with speech_recognition.Microphone() as source:
         print("Press ENTER when ready to start recording, or q to quit.")
 
